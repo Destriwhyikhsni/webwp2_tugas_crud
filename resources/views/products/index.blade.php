@@ -13,8 +13,9 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
+                <p class="text-center"><h1> Tugas Destri </h1></p>
+
                 <div class="card border-0 shadow rounded">
-                    <h1> Tugas Destri </h1>
                     <div class="card-body">
                         <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">TAMBAH BLOG</a>
                         <table class="table table-bordered">
@@ -34,10 +35,12 @@
                                         <img src="{{ asset('storage/products/'.$blog->image) }}" class="rounded" style="width: 150px">
                                     </td>
                                     <td>{{ $blog->title }}</td>
-                                    <td>{!! $blog->description !!}</td>
+                                    <td><p>{{ "Rp " . number_format($blog->price,2,',','.') }}</p>
+                                    </td>
                                     <td>{{ $blog->stock }}</td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('products.destroy', $blog->id) }}" method="POST">
+                                            <a href="{{ route('products.show', $blog->id) }}" class="btn btn-sm btn-dark">SHOW</a>
                                             <a href="{{ route('products.edit', $blog->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
